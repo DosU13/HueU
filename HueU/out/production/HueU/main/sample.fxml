@@ -29,6 +29,20 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
+                  <Menu mnemonicParsing="false" text="Add">
+                    <items>
+                      <MenuItem fx:id="InputImage" mnemonicParsing="false" onAction="#InputOnAction" text="Input Image" />
+                        <MenuItem fx:id="OutputImage" mnemonicParsing="false" onAction="#OutputOnAction" text="Output" />
+                        <MenuItem fx:id="SeparateRGB" mnemonicParsing="false" onAction="#SeparateOnAction" text="Separate RGB" />
+                        <MenuItem fx:id="CombineRGBA" mnemonicParsing="false" onAction="#CombineOnAction" text="Combine RGB" />
+                        <Menu mnemonicParsing="false" text="Math">
+                          <items>
+                            <MenuItem fx:id="Math" mnemonicParsing="false" onAction="#MathOnAction" text="Math" />
+                          </items>
+                        </Menu>
+                    </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Undo" />
             <MenuItem mnemonicParsing="false" text="Redo" />
             <SeparatorMenuItem mnemonicParsing="false" />
@@ -48,6 +62,6 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane fx:id="root" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+    <AnchorPane  fx:id="root" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
   </children>
 </VBox>
