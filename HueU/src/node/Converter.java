@@ -102,7 +102,6 @@ public class Converter {
                 height = alphaArray[0].length;
             }
         }
-
         // get image's width and height
         System.out.println(width+" "+height);
         image = new BufferedImage(width , height , BufferedImage.TYPE_INT_RGB);

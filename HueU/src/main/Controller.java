@@ -2,8 +2,8 @@ package main;
 
 import MouseGestures.MyCirclesMakeDraggable;
 import MouseGestures.MyNodesMakeDraggable;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import node.MyNode;
@@ -13,6 +13,15 @@ import window.Window;
 
 public class Controller {
 
+    public MenuItem InputImage;
+    public MenuItem OutputImage;
+    public MenuItem SeparateRGB;
+    public MenuItem CombineRGBA;
+    public MenuItem Add;
+    public MenuItem Subtract;
+    public MenuItem Multiply;
+    public MenuItem Divide;
+    public MenuItem Formatter;
     private MyCirclesMakeDraggable myCirclesMakeDraggable = new MyCirclesMakeDraggable();
 
     private MyNodesMakeDraggable myNodesMakeDraggable = new MyNodesMakeDraggable();
@@ -30,32 +39,60 @@ public class Controller {
 
     @FXML
     private AnchorPane root;
+
     @FXML
-    void CombineOnAction(ActionEvent event) {
+    void CombineOnAction() {
         MyNode myNode = new MyNode(myNodeTypes.COMBINE_RGBA);
         addNewMyNode(myNode);
     }
+
     @FXML
-    void InputOnAction(ActionEvent event) {
+    void InputOnAction() {
         MyNode myNode = new MyNode(myNodeTypes.INPUT);
         addNewMyNode(myNode);
     }
+
     @FXML
-    void MathOnAction(ActionEvent event) {
-        MyNode myNode = new MyNode(myNodeTypes.MATH);
-        addNewMyNode(myNode);
-    }
-    @FXML
-    void OutputOnAction(ActionEvent event) {
+    void OutputOnAction() {
         MyNode myNode = new MyNode(myNodeTypes.OUTPUT);
         addNewMyNode(myNode);
     }
+
     @FXML
-    void SeparateOnAction(ActionEvent event) {
+    void SeparateOnAction() {
         MyNode myNode = new MyNode(myNodeTypes.SEPARATE_RGBA);
         addNewMyNode(myNode);
     }
 
+    @FXML
+    void AddOnAction() {
+        MyNode myNode = new MyNode(myNodeTypes.MATH);
+        addNewMyNode(myNode);
+    }
+
+    @FXML
+    void SubtractOnAction() {
+        MyNode myNode = new MyNode(myNodeTypes.MATH);
+        addNewMyNode(myNode);
+    }
+
+    @FXML
+    void MultiplyOnAction() {
+        MyNode myNode = new MyNode(myNodeTypes.MATH);
+        addNewMyNode(myNode);
+    }
+
+    @FXML
+    void DivideOnAction() {
+        MyNode myNode = new MyNode(myNodeTypes.MATH);
+        addNewMyNode(myNode);
+    }
+
+    @FXML
+    void FormatterOnAction() {
+        MyNode myNode = new MyNode(myNodeTypes.MATH);
+        addNewMyNode(myNode);
+    }
 
     @FXML
     private Window window = new Window();
@@ -68,21 +105,12 @@ public class Controller {
     private Pane draggablePane = new Pane();
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         myCirclesMakeDraggable.setDrawingPane(connectorPane);
-        nodeEditor.add(nodePane); nodeEditor.add(connectorPane) ; nodeEditor.add(draggablePane);
+        nodeEditor.add(nodePane);
+        nodeEditor.add(connectorPane);
+        nodeEditor.add(draggablePane);
         root.getChildren().add(window);
         window.add(nodeEditor);
-
-
-//        System.out.println(inputPoints);
-
-
-//        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) ->{
-//            System.out.println(root.getWidth() +"   "+ root.getHeight());
-//            window.setRootSize(root.getWidth() , root.getHeight());
-//        };
-//        root.widthProperty().addListener(stageSizeListener);
-//        root.heightProperty().addListener(stageSizeListener);
     }
 }

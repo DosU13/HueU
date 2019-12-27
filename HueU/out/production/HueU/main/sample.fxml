@@ -8,11 +8,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
-  <children>
     <MenuBar VBox.vgrow="NEVER">
-      <menus>
         <Menu mnemonicParsing="false" text="File">
-          <items>
             <MenuItem mnemonicParsing="false" text="New" />
             <MenuItem mnemonicParsing="false" text="Open…" />
             <Menu mnemonicParsing="false" text="Open Recent" />
@@ -25,24 +22,22 @@
             <MenuItem mnemonicParsing="false" text="Preferences…" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
-          <items>
-                  <Menu mnemonicParsing="false" text="Add">
-                    <items>
-                      <MenuItem fx:id="InputImage" mnemonicParsing="false" onAction="#InputOnAction" text="Input Image" />
-                        <MenuItem fx:id="OutputImage" mnemonicParsing="false" onAction="#OutputOnAction" text="Output" />
-                        <MenuItem fx:id="SeparateRGB" mnemonicParsing="false" onAction="#SeparateOnAction" text="Separate RGB" />
-                        <MenuItem fx:id="CombineRGBA" mnemonicParsing="false" onAction="#CombineOnAction" text="Combine RGB" />
-                        <Menu mnemonicParsing="false" text="Math">
-                          <items>
-                            <MenuItem fx:id="Math" mnemonicParsing="false" onAction="#MathOnAction" text="Math" />
-                          </items>
-                        </Menu>
-                    </items>
-                  </Menu>
-                  <SeparatorMenuItem mnemonicParsing="false" />
+            <Menu mnemonicParsing="false" text="Add">
+                <MenuItem fx:id="InputImage" mnemonicParsing="false" onAction="#InputOnAction" text="Input Image" />
+                <MenuItem fx:id="OutputImage" mnemonicParsing="false" onAction="#OutputOnAction" text="Output" />
+                <MenuItem fx:id="SeparateRGB" mnemonicParsing="false" onAction="#SeparateOnAction" text="Separate RGB" />
+                <MenuItem fx:id="CombineRGBA" mnemonicParsing="false" onAction="#CombineOnAction" text="Combine RGB" />
+                <Menu mnemonicParsing="false" text="Math">
+                    <MenuItem fx:id="Add" mnemonicParsing="false" onAction="#AddOnAction" text="Add" />
+                    <MenuItem fx:id="Subtract" mnemonicParsing="false" onAction="#SubtractOnAction" text="Subtract" />
+                    <MenuItem fx:id="Multiply" mnemonicParsing="false" onAction="#MultiplyOnAction" text="Multiply" />
+                    <MenuItem fx:id="Divide" mnemonicParsing="false" onAction="#DivideOnAction" text="Divide" />
+                    <MenuItem fx:id="Formatter" mnemonicParsing="false" onAction="#FormatterOnAction" text="Formatter" />
+                </Menu>
+            </Menu>
+            <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Undo" />
             <MenuItem mnemonicParsing="false" text="Redo" />
             <SeparatorMenuItem mnemonicParsing="false" />
@@ -53,15 +48,10 @@
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Select All" />
             <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
+            <MenuItem mnemonicParsing="false" text="About" />
         </Menu>
-      </menus>
     </MenuBar>
-    <AnchorPane  fx:id="root" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
-  </children>
+    <AnchorPane fx:id="root" VBox.vgrow="ALWAYS" />
 </VBox>
