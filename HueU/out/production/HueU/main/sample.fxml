@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.Controller">
     <MenuBar VBox.vgrow="NEVER">
         <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" text="New" />
@@ -25,16 +25,20 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
             <Menu mnemonicParsing="false" text="Add">
-                <MenuItem fx:id="InputImage" mnemonicParsing="false" onAction="#InputOnAction" text="Input Image" />
-                <MenuItem fx:id="OutputImage" mnemonicParsing="false" onAction="#OutputOnAction" text="Output" />
-                <MenuItem fx:id="SeparateRGB" mnemonicParsing="false" onAction="#SeparateOnAction" text="Separate RGB" />
-                <MenuItem fx:id="CombineRGBA" mnemonicParsing="false" onAction="#CombineOnAction" text="Combine RGB" />
+                <MenuItem mnemonicParsing="false" onAction="#InputOnAction" text="Input Image" />
+                <MenuItem mnemonicParsing="false" onAction="#OutputOnAction" text="Output" />
+                <MenuItem mnemonicParsing="false" onAction="#SeparateOnAction" text="Separate RGB" />
+                <MenuItem mnemonicParsing="false" onAction="#CombineOnAction" text="Combine RGB" />
                 <Menu mnemonicParsing="false" text="Math">
-                    <MenuItem fx:id="Add" mnemonicParsing="false" onAction="#AddOnAction" text="Add" />
-                    <MenuItem fx:id="Subtract" mnemonicParsing="false" onAction="#SubtractOnAction" text="Subtract" />
-                    <MenuItem fx:id="Multiply" mnemonicParsing="false" onAction="#MultiplyOnAction" text="Multiply" />
-                    <MenuItem fx:id="Divide" mnemonicParsing="false" onAction="#DivideOnAction" text="Divide" />
-                    <MenuItem fx:id="Formatter" mnemonicParsing="false" onAction="#FormatterOnAction" text="Formatter" />
+                    <MenuItem mnemonicParsing="false" onAction="#AddOnAction" text="Add" />
+                    <MenuItem mnemonicParsing="false" onAction="#SubtractOnAction" text="Subtract" />
+                    <MenuItem mnemonicParsing="false" onAction="#MultiplyOnAction" text="Multiply" />
+                    <MenuItem mnemonicParsing="false" onAction="#DivideOnAction" text="Divide" />
+                    <MenuItem mnemonicParsing="false" onAction="#DistanceOnAction" text="Distance" />
+               <MenuItem mnemonicParsing="false" onAction="#MaxOnAction" text="Max" />
+               <MenuItem mnemonicParsing="false" onAction="#MinOnAction" text="Min" />
+               <MenuItem mnemonicParsing="false" onAction="#EqualsOnAction" text="Equals" />
+               <MenuItem mnemonicParsing="false" onAction="#GreaterOnAction" text="Greater than" />
                 </Menu>
             </Menu>
             <SeparatorMenuItem mnemonicParsing="false" />

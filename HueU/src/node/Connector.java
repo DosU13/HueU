@@ -3,13 +3,12 @@ package node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import node.Parameter.MyCircle;
-import java.util.List;
 
 public class Connector extends Line {
     private MyCircle getterPoint;
     private MyCircle setterPoint;
 
-    public Connector(){
+    Connector() {
         this.setStroke(Color.WHITE);
     }
 
@@ -25,20 +24,17 @@ public class Connector extends Line {
         layoutsChanged();
     }
 
-    public MyCircle getSetterPoint() {
+    MyCircle getSetterPoint() {
         return setterPoint;
     }
 
-    public void layoutsChanged(){
+    void layoutsChanged() {
         try {
             super.setStartX(getterPoint.getCenterX());
             super.setStartY(getterPoint.getCenterY());
             super.setEndX(setterPoint.getCenterX());
             super.setEndY(setterPoint.getCenterY());
-        } catch(NullPointerException e){} ;
-    }
-
-    public List<Connector> getConnectorList(){
-        return null;
+        } catch (NullPointerException ignored) {
+        }
     }
 }

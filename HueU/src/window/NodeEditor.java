@@ -6,10 +6,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import node.MyNode;
-import node.Parameter;
-
-import java.util.ArrayList;
 
 
 public class NodeEditor extends ScrollPane {
@@ -26,18 +22,14 @@ public class NodeEditor extends ScrollPane {
         this.setContent(nodeEditorPane);
     }
 
-    public void add(Node node){
+    public void add(Node node) {
         nodeEditorPane.getChildren().add(node);
-    }
-
-    public NodeEditorPane getNodeEditorPane() {
-        return nodeEditorPane;
     }
 
     public class NodeEditorPane extends Pane {
         private int width = 2000, height = 2000, disBtwLines = 20;
 
-        public NodeEditorPane() {
+        NodeEditorPane() {
             this.setPrefSize(width, height);
             this.setStyle("-fx-background-color: gray");
             for (int i = disBtwLines; i < width; i += disBtwLines) {

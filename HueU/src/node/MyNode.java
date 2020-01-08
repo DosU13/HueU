@@ -13,10 +13,10 @@ public class MyNode extends VBox {
     private ArrayList<MyCircle> inputPoints = new ArrayList<>();
     private ArrayList<MyCircle> outputPoints = new ArrayList<>();
     private ArrayList<Node> actives = new ArrayList<>();
-    private myNodeTypes mNT;
+    private MyNodeTypes mNT;
     private Parameter[] parameters;
 
-    public enum myNodeTypes{
+    public enum MyNodeTypes {
         INPUT("#8d0000" ,"#f00" ,2, new Parameter[]{
                 new Parameter("Image" , ParameterType.NAME),
                 new Parameter("Image" , ParameterType.IMAGE_OUTPUT)}),
@@ -37,8 +37,56 @@ public class MyNode extends VBox {
                 new Parameter("Green" , ParameterType.VALUE_GETTER) ,
                 new Parameter("Blue" , ParameterType.VALUE_GETTER) ,
                 new Parameter("Alpha" , ParameterType.VALUE_GETTER)}) ,
-        MATH("#008d8d" ,"#0ff" , 5 , new Parameter[]{
-                new Parameter("Math" , ParameterType.NAME),
+        MATHADD("#008d8d" ,"#0ff" , 5 , new Parameter[]{
+                new Parameter("Add" , ParameterType.NAME),
+                new Parameter("Value" , ParameterType.VALUE_SETTER) ,
+                new Parameter("" , ParameterType.MATH) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER)  }),
+        MATHSUBTRACT("#008d8d" ,"#0ff" , 5 , new Parameter[]{
+                new Parameter("Subtract" , ParameterType.NAME),
+                new Parameter("Value" , ParameterType.VALUE_SETTER) ,
+                new Parameter("" , ParameterType.MATH) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER)  }),
+        MATHMULTIPLY("#008d8d" ,"#0ff" , 5 , new Parameter[]{
+                new Parameter("Multiply" , ParameterType.NAME),
+                new Parameter("Value" , ParameterType.VALUE_SETTER) ,
+                new Parameter("" , ParameterType.MATH) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER)  }),
+        MATHDIVIDE("#008d8d" ,"#0ff" , 5 , new Parameter[]{
+                new Parameter("Divide" , ParameterType.NAME),
+                new Parameter("Value" , ParameterType.VALUE_SETTER) ,
+                new Parameter("" , ParameterType.MATH) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER)  }),
+        MATHDISTANCE("#008d8d" ,"#0ff" , 5 , new Parameter[]{
+                new Parameter("Distance" , ParameterType.NAME),
+                new Parameter("Value" , ParameterType.VALUE_SETTER) ,
+                new Parameter("" , ParameterType.MATH) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER)  }),
+        MATHMAX("#008d8d" ,"#0ff" , 5 , new Parameter[]{
+                new Parameter("Max" , ParameterType.NAME),
+                new Parameter("Value" , ParameterType.VALUE_SETTER) ,
+                new Parameter("" , ParameterType.MATH) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER)  }),
+        MATHMIN("#008d8d" ,"#0ff" , 5 , new Parameter[]{
+                new Parameter("Min" , ParameterType.NAME),
+                new Parameter("Value" , ParameterType.VALUE_SETTER) ,
+                new Parameter("" , ParameterType.MATH) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER)  }),
+        MATHEQUALS("#008d8d" ,"#0ff" , 5 , new Parameter[]{
+                new Parameter("Equals" , ParameterType.NAME),
+                new Parameter("Value" , ParameterType.VALUE_SETTER) ,
+                new Parameter("" , ParameterType.MATH) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER) ,
+                new Parameter("Value" , ParameterType.VALUE_GETTER)  }),
+        MATHGREATER("#008d8d" ,"#0ff" , 5 , new Parameter[]{
+                new Parameter("Greater than" , ParameterType.NAME),
                 new Parameter("Value" , ParameterType.VALUE_SETTER) ,
                 new Parameter("" , ParameterType.MATH) ,
                 new Parameter("Value" , ParameterType.VALUE_GETTER) ,
@@ -49,7 +97,7 @@ public class MyNode extends VBox {
         private final String highlightColor;
         private final int nOfParameters;
         private final Parameter[] parameters;
-        myNodeTypes(String  color ,String highlightColor ,  int nOfParameters, Parameter[] parameters){
+        MyNodeTypes(String  color , String highlightColor , int nOfParameters, Parameter[] parameters){
             this.nOfParameters = nOfParameters;
             this.parameters = parameters;
             this.color = color;
@@ -57,7 +105,7 @@ public class MyNode extends VBox {
         }
     }
 
-    public MyNode(myNodeTypes mNT) {
+    public MyNode(MyNodeTypes mNT) {
         this.mNT = mNT;
         this.setLayoutX(50); this.setLayoutY(50);
         this.setStyle("-fx-background-color: silver ; -fx-background-radius: 20 20 20 20");
@@ -65,13 +113,13 @@ public class MyNode extends VBox {
         this.setPrefSize(200, (0.5 + nOfParameters) * 30 );
         parameters = new Parameter[nOfParameters];
         for (int i = 0 ; i < nOfParameters ; i++){
-            parameters[i] = mNT.parameters[i].myClone();
+            parameters[i] = mNT.parameters[i].deepClone();
         }
         AnchorPane[] anchorPanes = new AnchorPane[nOfParameters];
         mainAnchorPane = new MainAnchorPane(mNT);
 
         mainAnchorPane.setPrefSize(200,30);
-        mainAnchorPane.getChildren().add((Parameter) parameters[0]);
+        mainAnchorPane.getChildren().add(parameters[0]);
         anchorPanes[0] = new MainAnchorPane(mNT);
         for (int i = 0 ; i < nOfParameters ; i++){
             if (i!=0) {
@@ -90,12 +138,12 @@ public class MyNode extends VBox {
         lastAnchorPane.setPrefSize(200 , 15);
         this.getChildren().add(lastAnchorPane);
         this.layoutsChanged();
-        if (mNT==myNodeTypes.COMBINE_RGBA) {
+        if (mNT== MyNodeTypes.COMBINE_RGBA) {
             Converter converter = new Converter(parameters[1].getMyCircle(),
                     parameters[2].getMyCircle(),parameters[3].getMyCircle(),parameters[4].getMyCircle(),parameters[5].getMyCircle());
             parameters[1].getMyCircle().setConverter(converter);
             }
-        if (mNT==myNodeTypes.SEPARATE_RGBA) {
+        if (mNT== MyNodeTypes.SEPARATE_RGBA) {
             Converter converter = new Converter(parameters[5].getMyCircle(),
                         parameters[1].getMyCircle(),parameters[2].getMyCircle(),parameters[3].getMyCircle(),parameters[4].getMyCircle());
             parameters[1].getMyCircle().setConverter(converter);
@@ -103,7 +151,12 @@ public class MyNode extends VBox {
             parameters[3].getMyCircle().setConverter(converter);
             parameters[4].getMyCircle().setConverter(converter);
         }
+        if (mNT.toString().matches("MATH(.*)")){
+            Math math = new Math(parameters[3].getMyCircle() , parameters[4].getMyCircle() , mNT);
+            parameters[1].getMyCircle().setMath(math);
+        }
     }
+
 
     public void layoutsChanged(){
         mainAnchorPane.setLayoutX(MyNode.this.getLayoutX());
@@ -130,8 +183,8 @@ public class MyNode extends VBox {
     public ArrayList<Node> getActives() {return actives; }
 
     public class MainAnchorPane extends AnchorPane{
-        myNodeTypes mNT;
-        MainAnchorPane(myNodeTypes mNT) {
+        MyNodeTypes mNT;
+        MainAnchorPane(MyNodeTypes mNT) {
             this.mNT = mNT;
             this.setStyle("-fx-background-color: "+mNT.color+"; -fx-background-radius: 20 20 0 0");
         }

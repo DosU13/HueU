@@ -2,9 +2,9 @@ package node;
 
 import javafx.scene.control.TextField;
 
-public class Value extends TextField {
+class Value extends TextField {
 
-    public Value() {
+    Value() {
         onlyNumber(this);
     }
     private void onlyNumber(TextField textField) {
@@ -15,7 +15,7 @@ public class Value extends TextField {
         });
     }
 
-    public int[][] getValue(){
+    int[][] getValue(){
         int value = Integer.valueOf(this.getText());
         return new int[][]{{value}};
     }
